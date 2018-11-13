@@ -3,12 +3,11 @@ This is an Dongyang Second year college 'WEB Project'
 
 **Topic : EBook**
 
---Å¬·Ğ
-1. ¾÷·ÎµåÇÒ Æú´õ(WebContext)¿¡ `git init`
-2. `git clone https://github.com/idhpaul/dongyangWEBproject.git`
+--í´ë¡ 
+1. `git clone https://github.com/idhpaul/dongyangWEBproject.git`
 
---¾÷·Îµå
-1. ./dongyangWEBproject·Î º¯°æ
+--ì—…ë¡œë“œ
+1. ./dongyangWEBprojectë¡œ ë³€ê²½
 2. `git add -A`
-3. `git commit -m "Ä¿¹ÔÇÒ ³»¿ë"
+3. `git commit -m "ì»¤ë°‹í•  ë‚´ìš©"
 4. `git push -u origin master`
