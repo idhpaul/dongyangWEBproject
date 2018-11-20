@@ -39,7 +39,7 @@
 			session.setAttribute("userID",user.getUserID());
 			script.println("<script>");
 			script.println("alert('회원가입 완료')");
-			script.println("location.href('main.jsp')");
+			script.println("location.href('index.jsp')");
 			script.println("</script>");
 		}
 		
