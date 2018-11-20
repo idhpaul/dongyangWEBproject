@@ -35,6 +35,7 @@
     width:100%;
     height:100%;
   }
+
 </style>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 	<jsp:include page="navbar.jsp" flush="false"/>
@@ -67,7 +68,7 @@
 	      </div>
 	      <div class="item img1">
 	      		<div style = "position : relative">
-			        <div class="front1" style = "position: absolute;"><img src="bookdata/bonobono1.jpg" alt="책이름"></div>
+			        <div class="front1" style = "position: absolute;"><img src="bookImage/01.jpg" alt="책이름" id="img2"></div>
 			        <div class="back1"><img src="img/recommand.png" alt="책이름"></div>
 			        <h3>보노보노처럼 살다니 다행이야</h3>
         			<p>컨텐츠 내용 책줄거리 요약 DB에서 꺼내서 입력</p>
