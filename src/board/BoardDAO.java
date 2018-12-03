@@ -29,13 +29,32 @@ public class BoardDAO {
 		}
 	}
 	
-	
-	
-	public ArrayList<Board> boardList(){
+	public int boardAllList(){
 		ArrayList<Board> boardList = new ArrayList<Board>();
 		try {
-			String SQL = "SELECT * FROM board LIMIT 10";
+			String SQL = "SELECT * FROM board";
 				pstmt = conn.prepareStatement(SQL);
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+						Board board = new Board(rs.getInt("bno"), rs.getString("title"), rs.getString("content"), rs.getString("writer"), rs.getTimestamp("write_date"));
+						boardList.add(board);
+					}
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("errrrrr");
+			return boardList.size();
+		}
+		return boardList.size();
+	}
+	
+	public ArrayList<Board> boardList(int pageNum){
+		ArrayList<Board> boardList = new ArrayList<Board>();
+		try {
+			pageNum=(pageNum-1)*10;
+			String SQL = "SELECT * FROM board order by bno desc LIMIT ?, 10 ";
+				pstmt = conn.prepareStatement(SQL);
+				pstmt.setInt(1, pageNum);
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
 						Board board = new Board(rs.getInt("bno"), rs.getString("title"), rs.getString("content"), rs.getString("writer"), rs.getTimestamp("write_date"));
@@ -54,6 +73,7 @@ public class BoardDAO {
 	public Board boardView(String bno) {
 		Board board = null;
 		try {
+			
 			String SQL = "SELECT * FROM board where bno=?";
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, bno);
@@ -95,6 +115,20 @@ public class BoardDAO {
 			return -1;
 		}
 		return 1;
+	}
+	public int boardInsert(String title,String content,String userId) {
+		try {
+			String SQL = "insert into board(title,content,writer) values(?,?,?)";
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, title);
+			pstmt.setString(2, content);
+			pstmt.setString(3, userId);
+			pstmt.executeUpdate();
+			return 1;
+		}catch(Exception e){
+			e.printStackTrace();
+			return -1;
+		}
 	}
 }
 	

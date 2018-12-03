@@ -55,19 +55,22 @@
 	<%
 	String bno = request.getParameter("bno");
 	String update = request.getParameter("update");
-	if(bno == null && update==null){%>
+	String insert = request.getParameter("insert");
+	if(bno == null && update==null&&insert==null){%>
 	<div class="container conf">
 		<jsp:include page="./NOTICE/boardList.jsp"/>
 	</div>
-	<%}else if(bno!=null&&update==null){ %>
+	<%}else if(bno!=null&&update==null&&insert==null){ %>
 	<!-- 여기서 부터는 View와 관련 된 부분 -->
 	<div id="viewalign">
 		<jsp:include page="./NOTICE/view.jsp"/>
 	</div>
-	<%}else {%>
+	<%}else if(bno==null&&update!=null&&insert==null){%>
 	<div id="viewalign">
 		<jsp:include page="./NOTICE/updateBoard.jsp"/>
 	</div>
+	<%}else if(bno==null&&update==null&&insert!=null){%>
+		<jsp:include page="./NOTICE/insert.jsp"/>
 	<%} %>
 	<!-- parameter값을 읽어 해당 목록 카테고리  활성화 시켜주는 역할을 함 -->
 	<!-- 여기 하단부에 위치해야됨  -->
