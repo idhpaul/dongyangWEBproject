@@ -80,8 +80,8 @@ img{
 		        </div>
 		        <!-- 이용설명은 이쪽에 입력 하시면 됩니다!! -->
 		        <div class="modal-body">
-		          <p>이용 안내이용 안내이용 안내이용 안내이용 안내이용 안내이용 안내이용 안내이용 안내이용 안내</p>
-		          <p>이용 안내이용 안내이용 안내이용 안내이용 안내이용 안내이용 안내이용 안내이용 안내이용 안내</p>
+		          <p>1. 대여하기를 누릅니다</p>
+		          <p>2. 마이페이지로 가면 책이 등록되어져 있습니다!</p>
 		        </div>
 		        <div class="modal-footer">
 		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
