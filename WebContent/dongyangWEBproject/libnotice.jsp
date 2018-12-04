@@ -65,7 +65,7 @@
 	<div id="viewalign">
 		<jsp:include page="./NOTICE/view.jsp"/>
 	</div>
-	<%}else if(bno==null&&update!=null&&insert==null){%>
+	<%}else if(bno!=null&&update!=null&&insert==null){%>
 	<div id="viewalign">
 		<jsp:include page="./NOTICE/updateBoard.jsp"/>
 	</div>

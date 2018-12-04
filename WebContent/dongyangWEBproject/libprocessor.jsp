@@ -1,3 +1,6 @@
+<%@page import="book.BookDAO"%>
+<%@page import="book.Book"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -59,7 +62,11 @@ img{
 	width: 100px;
 }
 </style>
-
+		<script>
+		function bookRental(bookId){
+		    location.href = "./RENTAL/rental.jsp?bookid=" + bookId;   //get방식으로 삭제할아이디를 넘김       
+		}
+		</script>
 <body class="backgroundImage">
 	<jsp:include page="./HEADER/navbar.jsp" flush="false"/>
 	
@@ -99,7 +106,6 @@ img{
 				  <div class="panel-heading"><h1 style="text-align: center;">장르</h1></div>
 				  <div class="panel-body center">
 				  <div id="list" class="btn-group-vertical">
-				  
 						  <a href="libprocessor.jsp?page=liter" class="btn btn-primary">문학</a>
 						  <a href="libprocessor.jsp?page=liter" class="btn btn-primary">참고서</a>
 						  <a href="libprocessor.jsp?page=liter" class="btn btn-primary">시집</a>
@@ -125,12 +131,26 @@ img{
 						<!-- 나중에 DB 데이터 불러올때 여기서 위와같이 페이지 파라메터 분석해서
 							해당데이터 만큼 데이터 불러오면 됨
 						 -->
+						 <jsp:useBean id="bookDAO" class="book.BookDAO"/>
+						 <% 
+						 ArrayList<Book> book = bookDAO.bookList(); 
+						 for(int i = 0; i < book.size(); i++ ){
+							 Book booklist = new Book();
+							 booklist = book.get(i);
+						 %>
 						<tr>
-							<td><img alt="책이미지나중에 이름기입" src="IMAGE/bookImage/01.jpg"></td>
-							<td>dddddd</td>
-							<td>강효석</td>
-							<td><input type="button" value="대여하기" onclick=""/></td>
+							<td><img alt="책이미지나중에 이름기입" src="IMAGE/bookImage/<%= booklist.getBookImg()%>"></td>
+							<td><%=booklist.getBookTitle() %></td>
+							<td><%=booklist.getBookAuthor() %></td>
+							<td>
+								<% if (booklist.getBookRental() == 1){ %>
+									<input type="button" value="대여불가">
+								<%}else{ %>
+									<input type="button" value="대여" onclick="bookRental(<%=booklist.getBookID() %>)">
+								<%} %>
+							</td>
 						</tr>
+						<%} %>
 						</tbody>
 			      </table>
 			    </div>
