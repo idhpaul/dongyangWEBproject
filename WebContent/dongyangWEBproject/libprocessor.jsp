@@ -129,25 +129,7 @@ img{
 							<td><img alt="책이미지나중에 이름기입" src="IMAGE/bookImage/01.jpg"></td>
 							<td>dddddd</td>
 							<td>강효석</td>
-							<td>1995/02/15</td>
-						</tr>
-						<tr>
-							<td><img alt="책이미지나중에 이름기입" src="IMAGE/bookImage/02.jpg"></td>
-							<td>dddddd</td>
-							<td>강효석</td>
-							<td>1995/02/15</td>
-						</tr>
-						<tr>
-							<td><img alt="책이미지나중에 이름기입" src="IMAGE/bookImage/03.jpg"></td>
-							<td>dddddd</td>
-							<td>강효석</td>
-							<td>1995/02/15</td>
-						</tr>
-						<tr>
-							<td><img alt="책이미지나중에 이름기입" src="IMAGE/bookImage/04.jpg"></td>
-							<td>dddddd</td>
-							<td>강효석</td>
-							<td>1995/02/15</td>
+							<td><input type="button" value="대여하기" onclick=""/></td>
 						</tr>
 						</tbody>
 			      </table>

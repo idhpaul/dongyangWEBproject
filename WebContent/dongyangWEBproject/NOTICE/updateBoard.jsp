@@ -10,6 +10,7 @@
 	<jsp:useBean id="boardDAO" class="board.BoardDAO" scope="page"/>
 </head>
 <body>
+<% System.out.println("일단은 실행됨");%>
 	<%
 		PrintWriter script = response.getWriter();
 		String userID = (String) session.getAttribute("userId");

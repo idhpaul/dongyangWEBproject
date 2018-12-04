@@ -29,7 +29,7 @@
 			script.println("</script>");}
 			else{
 				script.println("<script>");
-				script.println("alert('수정 성공')");
+				script.println("alert('글쓰기 성공')");
 				script.println("location.href='../libnotice.jsp'");
 				script.println("</script>");}
 			}

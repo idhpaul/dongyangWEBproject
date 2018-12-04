@@ -83,6 +83,9 @@
 		if(admin==0){
 			UserDAO userDao = new UserDAO();
 	%>
+	<div id="headTitle">
+		<h1>마이 페이지</h1>
+	</div>
 	<br><br>
 	<div class="container line">
 		<div class="col-lg-4"></div>
@@ -105,6 +108,31 @@
 		</div>
 		<div class = "col-lg-4"></div>
 	</div>
+	
+		<div class="container">
+		<div class="col-lg-2"></div>
+		<div class="col-lg-8">
+					        <table class="table table-fixed">
+		          <thead>
+		            <tr>
+		              <th class="col-xs-3">책제목</th><th class="col-xs-3">작가</th><th class="col-xs-4">출판사</th><th class="col-xs-2">책읽기</th>
+		            </tr>
+		          </thead>
+		          <tbody>
+							<tr>
+								<td class="col-xs-3">제목</td>
+								<td class="col-xs-3">작가</td>
+								<td class="col-xs-4">출판사</td>
+								<td class="col-xs-2"><input type="Button" value="책읽기"/></td>
+							</tr>
+		          </tbody>
+		        </table>
+		</div>
+		<div class = "col-lg-2"></div>
+	</div>
+	
+	
+	
 	
 	<%}else{ %>
 	<div id="headTitle">

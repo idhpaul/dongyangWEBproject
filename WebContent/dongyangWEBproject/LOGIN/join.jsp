@@ -49,10 +49,8 @@
 					<input type = "text" class = "form-control" placeholder="이름" name = "userName" maxlenth="40">
 				</div>
 				<div class = "form-group" style = "text-align:center;">
-					<div class="btn-group" data-toggle="buttons">
-							<input type = "radio" name = "userGender" value="남자" checked>남자
-							<input type = "radio" name = "userGender" value="여자" checked>여자
-					</div>
+							<input type = "radio" name = "userGender" value="남자">남자
+							<input type = "radio" name = "userGender" value="여자" checked="checked">여자
 				</div>
 				<div class = "form-group">
 					<input type = "email" class = "form-control" placeholder="이메일" name = "userEmail" maxlenth="40">
