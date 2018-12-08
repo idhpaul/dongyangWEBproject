@@ -73,6 +73,14 @@
 	    location.href = "./RENTAL/return.jsp?bookid=" + bookId;   //get방식으로 삭제할아이디를 넘김       
 	}
 	</script>
+	<!-- PDF scripts import -->
+	<script type="text/javascript" src="DESIGN/js/pdfobject.js"></script>
+ 
+	<script type="text/javascript">
+		window.onload = function (){
+        var success = new PDFObject({ url: "./IMAGE/book1.pdf" }).embed("pdf"); 
+    };
+	</script>
 
 </head>
 <jsp:useBean id="userDAO" class="user.UserDAO" scope="page"/>
@@ -165,7 +173,7 @@
 					<tr>	
 						<td><%=booklist.getBookTitle() %></td>
 						<td><%=booklist.getBookAuthor() %></td>
-						<td><input type="Button" class="btn btn-success" value="책읽기"/></td>
+						<td><div id="pdf"><input type="Button" class="btn btn-success" value="책읽기" onclick="window.open('./IMAGE/<%=booklist.getBookData() %>.pdf')"/></div></td>
 						<td><input type="Button" class="btn btn-danger" value="책반납" onclick="bookReturn(<%=booklist.getBookID() %>)"/></td>
 					</tr>
 					<%} %>
