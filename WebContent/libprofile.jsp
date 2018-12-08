@@ -78,7 +78,6 @@
  
 	<script type="text/javascript">
 		window.onload = function (){
-        var success = new PDFObject({ url: "./IMAGE/book1.pdf" }).embed("pdf"); 
     };
 	</script>
 
@@ -132,7 +131,7 @@
 		%>
 				<jsp:include page="./ADMIN/memberManeger.jsp"/>
 		<%}else if(pg.equals("book")){ %>
-				<div class="container">
+		<div class="container">
 		<div class="col-lg-2"></div>
 		<div class="col-lg-8">
 					        <table class="table table-fixed">
@@ -173,7 +172,7 @@
 					<tr>	
 						<td><%=booklist.getBookTitle() %></td>
 						<td><%=booklist.getBookAuthor() %></td>
-						<td><div id="pdf"><input type="Button" class="btn btn-success" value="책읽기" onclick="window.open('./IMAGE/<%=booklist.getBookData() %>.pdf')"/></div></td>
+						<td><div id="pdf"><input type="Button" class="btn btn-success" value="책읽기" onclick="window.open('./BOOKDATA/<%=booklist.getBookData() %>.pdf')"/></div></td>
 						<td><input type="Button" class="btn btn-danger" value="책반납" onclick="bookReturn(<%=booklist.getBookID() %>)"/></td>
 					</tr>
 					<%} %>
