@@ -7,10 +7,11 @@ public class Book {
 	private String bookAuthor;
 	private String bookData;
 	private int bookRental;
-	
+
 	public Book(){
 		
 	}
+
 	public Book(int bookID, String bookImg, String bookTitle, String bookAuthor, String bookData, int bookRental) {
 		super();
 		this.bookID = bookID;
@@ -20,8 +21,7 @@ public class Book {
 		this.bookData = bookData;
 		this.bookRental = bookRental;
 	}
-	
-	
+
 	//SETTER
 	public void setBookID(int bookID) {this.bookID = bookID;}
 	public void setBookImg(String bookImg) {this.bookImg = bookImg;}
@@ -36,4 +36,5 @@ public class Book {
 	public String getBookAuthor() {return bookAuthor;}
 	public String getBookData() {return bookData;}
 	public int getBookRental() {return bookRental;}
+
 }

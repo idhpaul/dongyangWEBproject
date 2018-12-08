@@ -30,10 +30,9 @@
 			}else{
 				script.println("<script>");
 				script.println("alert('정상대여')");
-				script.println("location.href='../libprocessor.jsp';");
+				script.println("location.href='/dongyang/libprocessor.jsp';");
 				script.println("</script>");
 			}
-			
 		}
 	%>
 </body>

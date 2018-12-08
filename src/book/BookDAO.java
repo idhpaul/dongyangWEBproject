@@ -12,7 +12,7 @@ public class BookDAO {
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
-	
+
 	public BookDAO(){
 		try {
 			
@@ -27,6 +27,7 @@ public class BookDAO {
 			e.printStackTrace();
 		}
 	}
+
 	//libprocessor.jsp - 게시판 대여 관리
 	public ArrayList<Book> bookList() {
 		ArrayList<Book> bookdata = new ArrayList<Book>();
@@ -43,7 +44,6 @@ public class BookDAO {
 		}
 		return bookdata;
 	}
-	
 	public int rentalBook(String userID, int bookID) {
 		String SQL = "insert into rental values(?,?)";
 		String SQL2 = "update book set bookRantal=1 where bookId=?";
@@ -61,9 +61,5 @@ public class BookDAO {
 		}
 		return 1;
 	}
-	//libprofile.jsp - 개인 대출 관리
-	
-	
-	
 	
 }

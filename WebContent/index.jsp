@@ -44,10 +44,11 @@
 	<!-- 섹션 처리부분  -->
 	<div id="section41" class="container-fluid mainback">
 		<div class="jumbotron">
-		  <h1 class="animated fadeIn Title slow">소개내용내용</h1>
+		  <h1 class="animated fadeIn Title slow">동양 미래 도서관</h1>
 			  <div class="animated fadeIn conetent slower">   
-			  <p>데이터데이터데이터데이터데이터데이터데이터데이터데이터데이터데이터데이터데이터데이터데이터데이터데이터</p>
-			  <p>데이터데이터데이터데이터데이터데이터데이터데이터데이터데이터데이터데이터데이터데이터데이터데이터데이터</p>
+			  <p>이제 도서관은 책을 읽는 공간에서 문화의 복합공간으로 변화하고 있습니다. 자료를 수집 · 정리하고 제공하는 전통적인 기능 외에 </p>
+			  <p>다양한 문화교육프로그램을 제공하는 평생교육문화의 장으로 거듭나고 있습니다.</p>
+			  <p>동양인과 함께 하는 도서관으로 거듭나기 위해 노력하겠습니다.</p>
 			  </div>
 		  </div>
 	</div>
