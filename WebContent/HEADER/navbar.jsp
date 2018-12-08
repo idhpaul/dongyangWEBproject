@@ -4,7 +4,7 @@
 
 <% 
 	//네비게이션바 절대경로 설정
-	String path = "/DongyangWEB/dongyangWEBproject/"; 
+	String path = "/dongyang/"; 
   
 	//로그인 확인 변수
 	String userId = (String)session.getAttribute("userId");

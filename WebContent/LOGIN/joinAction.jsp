@@ -45,7 +45,7 @@
 				script.println("<script>");
 				script.println("alert('회원가입 완료')");
 				//경로 바꿔줄것(절대경로)
-				script.println("location.href='/DongyangWEB/dongyangWEBproject/index.jsp';");
+				script.println("location.href='/dongyang/index.jsp';");
 				script.println("</script>");
 			}
 		}
@@ -62,7 +62,7 @@
 			script.println("<script>");
 			script.println("alert('회원가입 완료')");
 			//경로 바꿔줄것(절대경로)
-			script.println("location.href='/DongyangWEB/dongyangWEBproject/index.jsp';");
+			script.println("location.href='/dongyang/index.jsp';");
 			script.println("</script>");
 		}
 		

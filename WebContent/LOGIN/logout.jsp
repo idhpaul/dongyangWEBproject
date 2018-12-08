@@ -14,5 +14,5 @@
 <%
 	session.invalidate();
 	//경로 바꿔줄것(절대경로)
-	response.sendRedirect("/DongyangWEB/dongyangWEBproject/index.jsp");
+	response.sendRedirect("/dongyang/index.jsp");
 %>

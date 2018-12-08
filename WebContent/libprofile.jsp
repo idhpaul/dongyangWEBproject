@@ -4,6 +4,8 @@
 <%@ page import = "java.io.PrintWriter" %>
 <%@ page import="user.User" %>
 <%@ page import="user.UserDAO" %>
+<%@ page import="book.Book" %>
+<%@ page import="rental.RentalDAO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,10 +40,10 @@
 	<script>
 	//관리자 scripts onclick 함수
     function idDelete(delID){
-        location.href = "./Admin/memberDelet.jsp?id=" + delID;   //get방식으로 삭제할아이디를 넘김          
+        location.href = "./ADMIN/memberDelet.jsp?id=" + delID;   //get방식으로 삭제할아이디를 넘김          
     }
     function idAdmin(userID){
-        location.href = "./Admin/memberAdmin.jsp?id=" + userID;   //get방식으로 삭제할아이디를 넘김       
+        location.href = "./ADMIN/memberAdmin.jsp?id=" + userID;   //get방식으로 삭제할아이디를 넘김       
     }
     //유저정보 scripts onclick 함수
     function js_changePassword(userId){
@@ -49,14 +51,14 @@
        if(input =="")
     		alert("변경할 비밀번호를 입력하세요")
        else
-       		location.href = "./Admin/memberEdit.jsp?id=" + userId +"&pass="+input;
+       		location.href = "./ADMIN/memberEdit.jsp?id=" + userId +"&pass="+input;
     }
     function js_changeName(userId){
     	var input = document.getElementById('js_changeName').value;
     	if(input =="")
      		alert("변경할 이름을 입력하세요")
 		else
-        	location.href = "./Admin/memberEdit.jsp?id=" + userId +"&name="+input;
+        	location.href = "./ADMIN/memberEdit.jsp?id=" + userId +"&name="+input;
                
     }
     function js_changeEmail(userId){
@@ -64,15 +66,17 @@
     	if(input =="")
      		alert("변경할 이메일을 입력하세요")
         else
-        	location.href = "./Admin/memberEdit.jsp?id=" + userId +"&email="+input;
+        	location.href = "./ADMIN/memberEdit.jsp?id=" + userId +"&email="+input;
                
     }
+	function bookReturn(bookId){
+	    location.href = "./RENTAL/return.jsp?bookid=" + bookId;   //get방식으로 삭제할아이디를 넘김       
+	}
 	</script>
 
 </head>
 <jsp:useBean id="userDAO" class="user.UserDAO" scope="page"/>
 <jsp:useBean id="users" class="user.User" scope="page"/>
-
 <% 
 	String userId = (String) session.getAttribute("userId");
 	int admin = userDAO.checkAdmin(userId); 
@@ -108,31 +112,6 @@
 		</div>
 		<div class = "col-lg-4"></div>
 	</div>
-	
-		<div class="container">
-		<div class="col-lg-2"></div>
-		<div class="col-lg-8">
-					        <table class="table table-fixed">
-		          <thead>
-		            <tr>
-		              <th class="col-xs-3">책제목</th><th class="col-xs-3">작가</th><th class="col-xs-4">출판사</th><th class="col-xs-2">책읽기</th>
-		            </tr>
-		          </thead>
-		          <tbody>
-							<tr>
-								<td class="col-xs-3">제목</td>
-								<td class="col-xs-3">작가</td>
-								<td class="col-xs-4">출판사</td>
-								<td class="col-xs-2"><input type="Button" value="책읽기"/></td>
-							</tr>
-		          </tbody>
-		        </table>
-		</div>
-		<div class = "col-lg-2"></div>
-	</div>
-	
-	
-	
 	
 	<%}else{ %>
 	<div id="headTitle">
@@ -181,6 +160,37 @@
 		  </form>
 		</div>
 		<%} %>
+		
+		<!-- rental DAO HERE -->
+	<%
+		RentalDAO rental = new RentalDAO();
+	%>
+	<jsp:useBean id="rentalDAO" class="rental.RentalDAO" scope="page"/>
+	
+		<div class="container">
+			<table class="table table-striped">
+		        <thead>
+		           <tr>
+		             <th>책제목</th><th>작가</th><th>책읽기</th><th>책반납</th>
+		           </tr>
+		        </thead>
+		        <tbody>
+		          	<% 
+						ArrayList<Book> rentallist =rentalDAO.rentalList(userId); 
+						for(int i = 0; i < rentallist.size(); i++ ){
+						Book booklist = new Book();
+						booklist = rentallist.get(i);
+					%>
+					<tr>	
+						<td><%=booklist.getBookTitle() %></td>
+						<td><%=booklist.getBookAuthor() %></td>
+						<td><input type="Button" class="btn btn-success" value="책읽기"/></td>
+						<td><input type="Button" class="btn btn-danger" value="책반납" onclick="bookReturn(<%=booklist.getBookID() %>)"/></td>
+					</tr>
+					<%} %>
+		        </tbody>
+		     </table>
+		</div>
 </body>
 
 

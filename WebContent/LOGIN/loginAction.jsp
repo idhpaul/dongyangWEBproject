@@ -27,7 +27,7 @@
 		session.setAttribute("userId",user.getUserId());
 		script.println("<script>");
 		//경로 바꿔줄것(절대경로)
-		script.println("location.href='/DongyangWEB/dongyangWEBproject/index.jsp';");
+		script.println("location.href='/dongyang/index.jsp';");
 		script.println("</script>");
 	}
 	if(result == 0){

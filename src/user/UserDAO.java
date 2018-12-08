@@ -22,7 +22,7 @@ public class UserDAO {
 			//DB CONNECT INFO////////////////////////////////////////////////////////////////////////////
 			String dbURL = "jdbc:mysql://localhost:3306/dongyangwebproject?useUnicode=true&characterEncoding=UTF-8";
 			String dbID = "root";
-			String dbPassword = "123456";
+			String dbPassword = "root";
 			////////////////////////////////////////////////////////////////////////////////////////////
 		
 			Class.forName("com.mysql.jdbc.Driver");
@@ -34,7 +34,7 @@ public class UserDAO {
 	
 	}
 
-	//·Î±×ÀÎ ¸Þ¼Òµå
+	//ï¿½Î±ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
 	public int login(String userId,String userPassword) {
 		String SQL = "SELECT userPassword FROM user WHERE userId = ?";
 		try {
@@ -56,7 +56,7 @@ public class UserDAO {
 		return -2;
 	}
 
-	//È¸¿ø°¡ÀÔ ¸Þ¼Òµå _ ÀÏ¹ÝÈ¸¿ø
+	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½ _ ï¿½Ï¹ï¿½È¸ï¿½ï¿½
 	public int join(User user) {
 		String SQL = "Insert into user(userId,userPassword,userName,userGender,userEmail) values(?,?,?,?,?);";
 		try {
@@ -73,7 +73,7 @@ public class UserDAO {
 		return -1;
 	}
 	
-	//È¸¿ø°¡ÀÔ ¸Þ¼Òµå _ °ü¸®ÀÚ
+	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½ _ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public int joinAdmin(User user) {
 		String SQL = "Insert into user values(?,?,?,?,?,?);";
 		try {
@@ -90,7 +90,7 @@ public class UserDAO {
 		}
 		return -1;
 	}
-	//¾îµå¹ÎÀÎÁö Ã¼Å©ÇÏ´Â Äõ¸®¹®
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public int checkAdmin(String userId) {
 		String SQL = "SELECT admin FROM user WHERE userId = ?";
 		try {
@@ -107,7 +107,7 @@ public class UserDAO {
 		}
 		return -2;
 	}
-	//¾îµå¹Î À¯Àú ÀüÃ¼ Ãâ·Â ¸Þ¼Òµå
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
 	public ArrayList<User> userPrint(){
 		ArrayList<User> userdata = new ArrayList<User>();
 		String SQL = "SELECT * FROM user where admin=0";
@@ -155,7 +155,7 @@ public class UserDAO {
 	
 	public int deleteUser(String userId) {
 		String SQL = "delete from user where userId = ?";
-		System.out.println("ÀÌ°Å µµµ¥Ã¼ ¸î¹øµÈ°Å³Ä?");
+		System.out.println("ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½È°Å³ï¿½?");
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, userId);
@@ -168,7 +168,7 @@ public class UserDAO {
 	}
 	public int memberAdmin(String userId) {
 		String SQL = "update user set admin=1 where userId = ?";
-		System.out.println("ÀÌ°Å µµµ¥Ã¼ ¸î¹øµÈ°Å³Ä?");
+		System.out.println("ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½È°Å³ï¿½?");
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, userId);
@@ -180,9 +180,9 @@ public class UserDAO {
 		return 1;
 	}
 	
-	//ÀÏ¹Ý À¯Àú È¸¿øÁ¤º¸ º¯°æ ¸Þ¼Òµå / ±¸ºÐ - 1)Á¤º¸Á¶È¸, 2)º¯°æ
-	//1) Á¤º¸ Á¶È¸
-	//ºñ¹Ð¹øÈ£ Á¶È¸ ¸Þ¼Òµå
+	//ï¿½Ï¹ï¿½ ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½ / ï¿½ï¿½ï¿½ï¿½ - 1)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¸, 2)ï¿½ï¿½ï¿½ï¿½
+	//1) ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸
+	//ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½È¸ ï¿½Þ¼Òµï¿½
 	public String getPassword(String userId) {
 		String SQL = "select userPassword from user where userId='"+userId+"';";
 		String out = null;
@@ -197,7 +197,7 @@ public class UserDAO {
 		}
 		return out;
 	}
-	//ÀÌ¸§ Á¶È¸ ¸Þ¼Òµå
+	//ï¿½Ì¸ï¿½ ï¿½ï¿½È¸ ï¿½Þ¼Òµï¿½
 	public String getName(String userId) {
 		String SQL = "select userName from user where userId='"+userId+"';";
 		String out = null;
@@ -212,7 +212,7 @@ public class UserDAO {
 		}
 		return out;
 	}
-	//ÀÌ¸ÞÀÏ Á¶È¸ ¸Þ¼Òµå
+	//ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ ï¿½Þ¼Òµï¿½
 	public String getEmail(String userId) {
 		String SQL = "select userEmail from user where userId='"+userId+"';";
 		String out = null;
