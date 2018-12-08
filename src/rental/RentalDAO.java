@@ -49,10 +49,11 @@ public class RentalDAO {
 	}
 	
 	public void returnBook(String userId, String bookId) {
-		String SQL = "delete FROM rental where userId = ?";
+		String SQL = "delete FROM rental where userId = ? and bookId = ?";
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, userId);
+			pstmt.setString(2, bookId);
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
