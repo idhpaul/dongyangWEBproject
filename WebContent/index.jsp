@@ -1,3 +1,5 @@
+<%@page import="book.Book"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -13,7 +15,6 @@
 <body>
 <!-- 이쪽은 따로 나중에 css파일로 만들어서 저장해놓을것임 -->
 <!-- 부트스트랩 이외에 내가 설정해놓은 디자인들 -->
-
  <!-- 여기까지 --> 
 </head>
 <style>
@@ -59,22 +60,49 @@
 	  <!-- 슬라이더의 갯수를 보여주는 부분 -->
 	  <!-- class에 active가 붙여진 부분을 가장 먼저 활성화 시켜 보여주게 됨 -->
 	  <ol class="carousel-indicators cusor">
+	  <jsp:useBean id="bookDAO" class="book.BookDAO"/>
+	  <%
+	  	ArrayList<Book> booklist = bookDAO.recomList();
+	  	if(booklist.size()==0){
+	  %>
 	    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-	    <li data-target="#myCarousel" data-slide-to="1"></li>
+	    <%}else{ 
+	    for(int i = 0 ; i<booklist.size();i++){
+	    if(i==0){%>
+	    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+	    <%}else{ %>
+	    <li data-target="#myCarousel" data-slide-to="<%= i%>"></li>
+	    <%} %>
+	    <%}} %>
 	  </ol>
 		  <!-- Wrapper for slides -->
 	    <div class="carousel-inner">
+	    <%if(booklist.size()==0){ %>
 	      <div class="item active img1">
 	        <img src="IMAGE/img/recommand.png" alt="책이름" >
+	        <h3>추천하는 도서는 지금은 없습니다!</h3>
 	      </div>
-	      <div class="item img1">
+	     <%}else{ %>
+	     <%for(int t=0 ; t< booklist.size();t++){ %>
+	     <%if(t==0){ %>
+	      <div class="item img1 active">
 	      		<div style = "position : relative">
-			        <div class="front1" style = "position: absolute;"><img src="IMAGE/bookImage/01.jpg" alt="책이름" id="img2"></div>
+			        <div class="front1" style = "position: absolute;"><img src="IMAGE/bookImage/<%=booklist.get(t).getBookImg() %>" alt="책이름" id="img2"></div>
 			        <div class="back1"><img src="IMAGE/img/recommand.png" alt="책이름"></div>
-			        <h3>보노보노처럼 살다니 다행이야</h3>
-        			<p>컨텐츠 내용 책줄거리 요약 DB에서 꺼내서 입력</p>
+			        <h2><%=booklist.get(t).getBookTitle() %></h2>
+        			<h3><%=booklist.get(t).getBookAuthor() %></h3>
 				</div>
 	      </div>
+	      <%}else{ %>
+	      <div class="item img1">
+	      		<div style = "position : relative">
+			        <div class="front1" style = "position: absolute;"><img src="IMAGE/bookImage/<%=booklist.get(t).getBookImg() %>" alt="책이름" id="img2"></div>
+			        <div class="back1"><img src="IMAGE/img/recommand.png" alt="책이름"></div>
+			        <h2><%=booklist.get(t).getBookTitle() %></h2>
+        			<h3><%=booklist.get(t).getBookAuthor() %></h3>
+				</div>
+	      </div>
+	      <%}}} %>
 	    </div>
 		  <!-- 이미지 좌우로 넘기는 키 설정 부분 -->
 	    <a class="left carousel-control" href="#myCarousel" data-slide="prev">

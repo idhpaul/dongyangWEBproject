@@ -1,5 +1,6 @@
 package book;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,7 +20,7 @@ public class BookDAO {
 			//DB CONNECT INFO////////////////////////////////////////////////////////////////////////////
 			String dbURL = "jdbc:mysql://localhost:3306/dongyangwebproject?useUnicode=true&characterEncoding=UTF-8";
 			String dbID = "root";
-			String dbPassword = "root";
+			String dbPassword = "123456";
 			////////////////////////////////////////////////////////////////////////////////////////////
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
@@ -60,6 +61,102 @@ public class BookDAO {
 			return -1;
 		}
 		return 1;
+	}
+	
+	
+	
+	public String bookDelet(String bookID) {
+		String SQL = "SELECT * FROM book where bookId=?";
+		String SQL2 = "delete from book where bookId = ?";
+		String filename = null;
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, bookID);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				filename = rs.getString("bookData");
+			}
+			pstmt = conn.prepareStatement(SQL2);
+			pstmt.setString(1, bookID);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return filename;
+		}
+		return filename;
+	}
+	public int bookInset(String imgname,String title,String author, String bookdata) {
+		String SQL = "insert into book(bookImg,bookTitle,bookAuthor,bookData) values(?,?,?,?)";
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, imgname);
+			pstmt.setString(2, title);
+			pstmt.setString(3, author);
+			pstmt.setString(4, bookdata);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+		return 1;
+	}
+	public int bookRecomCheck(int bookID) {
+		String SQL = "select count(*) from recommand r, book b where r.bookID=?";
+		int i = 0;
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bookID);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				i = rs.getInt("count(*)");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+		return i;
+	}
+	public int bookRecomDel(String bookID) {
+		String SQL = "delete from recommand where bookId=?";
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, bookID);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+		return 1;
+	}
+	public int bookRInsert(String bookID) {
+		String SQL = "insert into recommand(bookid) values(?)";
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, bookID);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return 1;
+	}
+	public ArrayList<Book> recomList(){
+		String SQL="select * from book b,recommand r where b.bookId=r.bookId";
+		ArrayList<Book> booklist = new ArrayList<Book>();
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Book book = new Book();
+				book.setBookImg(rs.getString("bookImg"));
+				book.setBookTitle(rs.getString("bookTitle"));
+				book.setBookAuthor(rs.getString("bookAuthor"));
+				booklist.add(book);
+			}
+		}catch(Exception e) {
+			
+		}
+		return booklist;
 	}
 	
 }

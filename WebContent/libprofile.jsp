@@ -72,6 +72,9 @@
 	function bookReturn(bookId){
 	    location.href = "./RENTAL/return.jsp?bookid=" + bookId;   //get방식으로 삭제할아이디를 넘김       
 	}
+	function bookDelet(bookId){
+	    location.href = "./ADMIN/bookdelet.jsp?bookid=" + bookId;   //get방식으로 삭제할아이디를 넘김       
+	}
 	</script>
 	<!-- PDF scripts import -->
 	<script type="text/javascript" src="DESIGN/js/pdfobject.js"></script>
@@ -119,42 +122,11 @@
 		</div>
 		<div class = "col-lg-4"></div>
 	</div>
-	<%}else{ %>
-	
-	<div id="headTitle">
-		<h1>관리자 페이지</h1>
-		<h2><a href="libprofile.jsp?page=user">유저관리</a> <a href="libprofile.jsp?page=book">도서관리</a><a href="libprofile.jsp?page=recommand">추천도서관리</a></h2>
-	</div>
-		<% 
-			String pg = request.getParameter("page");
-			if(pg==null || pg.equals("user")){
-		%>
-				<jsp:include page="./ADMIN/memberManeger.jsp"/>
-		<%}else if(pg.equals("book")){ %>
-		<div class="container">
-		<div class="col-lg-2"></div>
-		<div class="col-lg-8">
-					        <table class="table table-fixed">
-		          <thead>
-		            <tr>
-		              <th class="col-xs-3">책제목</th><th class="col-xs-3">작가</th><th class="col-xs-4">출판사</th><th class="col-xs-2">도서삭제</th>
-		            </tr>
-		          </thead>
-		          <tbody>
-							<tr>
-								
-							</tr>
-		          </tbody>
-		        </table>
-		</div>
-		<%}} %>
-		
-		<!-- rental DAO HERE -->
+			<!-- rental DAO HERE -->
 	<%
 		RentalDAO rental = new RentalDAO();
 	%>
 	<jsp:useBean id="rentalDAO" class="rental.RentalDAO" scope="page"/>
-	
 		<div class="container">
 			<table class="table table-striped">
 		        <thead>
@@ -172,16 +144,31 @@
 					<tr>	
 						<td><%=booklist.getBookTitle() %></td>
 						<td><%=booklist.getBookAuthor() %></td>
-						<td><div id="pdf"><input type="Button" class="btn btn-success" value="책읽기" onclick="window.open('./BOOKDATA/<%=booklist.getBookData() %>.pdf')"/></div></td>
+						<td><div id="pdf"><input type="Button" class="btn btn-success" value="책읽기" onclick="window.open('./BOOKDATA/<%=booklist.getBookData() %>')"/></div></td>
 						<td><input type="Button" class="btn btn-danger" value="책반납" onclick="bookReturn(<%=booklist.getBookID() %>)"/></td>
 					</tr>
 					<%} %>
 		        </tbody>
 		     </table>
 		</div>
+	<%}else{ %>
+	<!-- 관리자 페이지 수정 부분 -->
+	<div id="headTitle">
+		<h1>관리자 페이지</h1>
+		<h2><a href="libprofile.jsp?page=user">유저관리</a> <a href="libprofile.jsp?page=book">도서관리</a><a href="libprofile.jsp?page=recommand">추천도서관리</a></h2>
+	</div>
+		<% 
+			String pg = request.getParameter("page");
+			if(pg==null || pg.equals("user")){
+		%>
+				<jsp:include page="./ADMIN/memberManeger.jsp"/>
+		<%}else if(pg.equals("book")){ %>
+				<jsp:include page="./ADMIN/bookManeger.jsp"/>
+		<%}else if(pg.equals("recommand")){ %>
+				<jsp:include page="./ADMIN/bookRecommand.jsp"/>
+		<%}} %>
+		<!-- 여기까지가 관리자 페이지 -->
 </body>
-
-
 	<script src = "https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src = "DESIGN/js/bootstrap.js"></script>
 </html>

@@ -1,7 +1,7 @@
 <%@page import="user.User"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,12 +14,12 @@
 		  <div class="row">
 		      <div class="panel panel-default">
 		        <div class="panel-heading">
-		          <h4>À¯Àú°ü¸®</h4>
+		          <h4>ìœ ì €ê´€ë¦¬</h4>
 		        </div>
 		        <table class="table table-fixed">
 		          <thead>
 		            <tr>
-		              <th class="col-xs-3">À¯Àú¾ÆÀÌµð</th><th class="col-xs-3">ÀÌ¸§</th><th class="col-xs-4">±ÇÇÑÁÖ±â</th><th class="col-xs-2">»èÁ¦</th>
+		              <th class="col-xs-3">ìœ ì €ì•„ì´ë””</th><th class="col-xs-3">ì´ë¦„</th><th class="col-xs-4">ê¶Œí•œì£¼ê¸°</th><th class="col-xs-2">ì‚­ì œ</th>
 		            </tr>
 		          </thead>
 		          <tbody>
@@ -40,8 +40,8 @@
 							<tr>
 								<td class="col-xs-3"><%= userdata.get(i).getUserId() %></td>
 								<td class="col-xs-3"><%= userdata.get(i).getUserName() %></td>
-								<td class="col-xs-4"><input type="button" value="°ü¸®ÀÚ±ÇÇÑºÎ¿©" onclick="idAdmin('<%= userdata.get(i).getUserId()%>');"/></td>
-								<td class="col-xs-2"><input type="button" value="»èÁ¦" onclick="idDelete('<%= userdata.get(i).getUserId()%>');"/></td>
+								<td class="col-xs-4"><input type="button" value="ê´€ë¦¬ìžê¶Œí•œë¶€ì—¬" onclick="idAdmin('<%= userdata.get(i).getUserId()%>');"/></td>
+								<td class="col-xs-2"><input type="button" value="ì‚­ì œ" onclick="idDelete('<%= userdata.get(i).getUserId()%>');"/></td>
 							</tr>
 						<%} %>
 		          </tbody>
@@ -49,7 +49,7 @@
 		      </div>
 		  </div>
 		  <form action="libprofile.jsp" method="get">
-		  		¾ÆÀÌµð °Ë»ö : <input type="text" name="ID"> <input type="submit" value="°Ë»ö">
+		  		ì•„ì´ë”” ê²€ìƒ‰ : <input type="text" name="ID"> <input type="submit" value="ê²€ìƒ‰">
 		  </form>
 		</div>
 </body>
