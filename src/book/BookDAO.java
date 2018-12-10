@@ -65,16 +65,17 @@ public class BookDAO {
 	
 	
 	
-	public String bookDelet(String bookID) {
+	public ArrayList<String> bookDelet(String bookID) {
 		String SQL = "SELECT * FROM book where bookId=?";
 		String SQL2 = "delete from book where bookId = ?";
-		String filename = null;
+		ArrayList<String> filename = new ArrayList<String>();
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, bookID);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				filename = rs.getString("bookData");
+				filename.add(rs.getString("bookData"));
+				filename.add(rs.getString("bookImg"));
 			}
 			pstmt = conn.prepareStatement(SQL2);
 			pstmt.setString(1, bookID);

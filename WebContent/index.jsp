@@ -39,6 +39,12 @@
   
 
 </style>
+<%
+	String path = session.getServletContext().getContextPath();
+	String path2 = session.getServletContext().getRealPath("/BOOKDATA/");
+	path2 ="C"+ path2.substring(1, path2.indexOf(".metadata"))+"dongyang\\UPLOAD\\";
+	System.out.println(path2);
+%>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 	<jsp:include page="./HEADER/navbar.jsp" flush="false"/>
 	<!-- 네비게이션 바 부분 은 후에 maintoolbar.jsp 파일로 변환시켜 include를 통해 불러올 생각을 해봄 -->
