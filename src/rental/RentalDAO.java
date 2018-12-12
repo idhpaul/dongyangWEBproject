@@ -19,7 +19,7 @@ public class RentalDAO {
 			//DB CONNECT INFO////////////////////////////////////////////////////////////////////////////
 			String dbURL = "jdbc:mysql://localhost:3306/dongyangwebproject?useUnicode=true&characterEncoding=UTF-8";
 			String dbID = "root";
-			String dbPassword = "123456";
+			String dbPassword = "root";
 			////////////////////////////////////////////////////////////////////////////////////////////
 		
 			Class.forName("com.mysql.jdbc.Driver");
