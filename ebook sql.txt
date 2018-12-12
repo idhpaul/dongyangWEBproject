@@ -1,0 +1,53 @@
+﻿CREATE TABLE `user`(
+	userId varchar(20) not null primary key,
+    userPassword varchar(20) not null,
+    userName varchar(20) not null,
+    userGender varchar(20),
+    userEmail varchar(40),
+    admin int default 0
+);
+
+CREATE TABLE `board` (
+	`bno` int(10) NOT NULL AUTO_INCREMENT primary key,
+    `title` varchar(250),
+    `content` longtext,
+    `writer` varchar(20),
+    `write_date` timestamp default now()
+);
+
+CREATE TABLE `book` (
+  `bookId` int(10) NOT NULL AUTO_INCREMENT,
+  `bookImg` varchar(20) NOT NULL,
+  `bookTitle` varchar(20) NOT NULL,
+  `bookAuthor` varchar(20) NOT NULL,
+  `bookData` varchar(20) NOT NULL,
+  `bookRantal` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`bookId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `rental` (
+  `userId` varchar(20) NOT NULL,
+  `bookId` int(10) NOT NULL,
+  PRIMARY KEY (`userId`,`bookId`),
+  KEY `bookId_idx` (`bookId`),
+  CONSTRAINT `bookId` FOREIGN KEY (`bookId`) REFERENCES `book` (`bookid`),
+  CONSTRAINT `userId` FOREIGN KEY (`userId`) REFERENCES `user` (`userid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `recommand` (
+  `num` int(10) NOT NULL AUTO_INCREMENT,
+  `bookId` int(10) NOT NULL,
+  PRIMARY KEY (`num`,`bookId`),
+  CONSTRAINT `bookIdx` FOREIGN KEY (`bookId`) REFERENCES `book` (`bookid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `dongyangwebproject`.`user` (`userId`, `userPassword`, `userName`, `userGender`, `userEmail`, `admin`) VALUES ('admin', 'admin', 'admin', '남자', 'admin@a.com', '1');
+
+INSERT INTO `dongyangwebproject`.`user` (`userId`, `userPassword`, `userName`, `userGender`, `userEmail`, `admin`) VALUES ('user', '1', 'user', '남자', 'user@b.com', '0');
+
+INSERT INTO `dongyangwebproject`.`user` (`userId`, `userPassword`, `userName`, `userGender`, `userEmail`, `admin`) VALUES ('kang', '1', 'kang', '남자', 'kang@b.com', '0');
+
+INSERT INTO `dongyangwebproject`.`user` (`userId`, `userPassword`, `userName`, `userGender`, `userEmail`, `admin`) VALUES ('imm', '1', 'imm', '남자', 'imm@c.com', '0');
+
+INSERT INTO `dongyangwebproject`.`user` (`userId`, `userPassword`, `userName`, `userGender`, `userEmail`, `admin`) VALUES ('choi', '1', 'choi', '여자', 'choi@d.com', '0');
+
