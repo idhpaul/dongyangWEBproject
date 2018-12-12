@@ -140,6 +140,8 @@
 						for(int i = 0; i < rentallist.size(); i++ ){
 						Book booklist = new Book();
 						booklist = rentallist.get(i);
+						String root = application.getRealPath("/BOOKDATA/");
+						String path = root+booklist.getBookData();
 					%>
 					<tr>	
 						<td><%=booklist.getBookTitle() %></td>
